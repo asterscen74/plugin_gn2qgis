@@ -18,15 +18,16 @@ class LoginDialog(QDialog):
     def __init__(self, network_manager=None):
         QDialog.__init__(self)
 
+        # Login window parameters
         self.setWindowTitle("Login GeoNature")
 
         self.network_manager = network_manager
 
-        self._url = None
         self.cookies = None
         self.accepted = None
 
         self.resize(469, 204)
+        # Create an account part
         self.service_label = QLabel(self)
         self.service_label.setText("Se connecter à " + __geonature_domain__)
         self.service_label.setGeometry(9, 20, 300, 20)
@@ -34,6 +35,7 @@ class LoginDialog(QDialog):
         self.create_account.setText(self.tr("Créer un compte"))
         self.create_account.setGeometry(300, 20, 150, 23)
         self.create_account.clicked.connect(self.open_url)
+        # login with username and password part
         self.user_label = QLabel(self)
         self.user_label.setGeometry(9, 112, 123, 23)
         self.user_label.setText("Nom d'utilisateur :")
@@ -47,24 +49,19 @@ class LoginDialog(QDialog):
         self.lne_password.setEchoMode(QLineEdit.Password)
         self.lne_password.setText("")
         self.lne_password.setGeometry(138, 141, 322, 23)
+        
         # Button to validate the login and password.
         ok_button = QPushButton("OK", self)
+        # When the ok button is clicked the validation process start
         ok_button.clicked.connect(self.check_password)
         ok_button.resize(100, 25)
         ok_button.move(350, 170)
+        
         # Label for the wrong password error message.
         self.wrongPasswordLabel = QLabel(self)
         self.wrongPasswordLabel.setText("")
         self.wrongPasswordLabel.move(20, 80)
         self.wrongPasswordLabel.resize(200, 30)
-
-    @property
-    def url(self):
-        return self._url
-
-    @property
-    def pending_downloads(self):
-        return self._pending_downloads
 
     def open_url(self):
         # Function to open the url of the buttons
@@ -72,28 +69,38 @@ class LoginDialog(QDialog):
         QDesktopServices.openUrl(url)
 
     def check_password(self):
+        # Validation of the user credentials informations
         if self.lne_password.text() != "":
             url = QUrl(__geonature_login__)
             request = QNetworkRequest(url)
             request.setHeader(QNetworkRequest.ContentTypeHeader, "application/json")
-
+            # Add credentials to a json
             json_data = {
                 "login": self.lne_user.text(),
                 "password": self.lne_password.text(),
             }
             document = QJsonDocument(json_data)
-
+            # Post request to test credentials
             reply = self.network_manager.post(request, document.toJson())
+            # Once the asynchronous request is finished, we check the password
             reply.finished.connect(lambda: self.validate_password(reply))
 
     def validate_password(self, reply):
+        # Only the password is validated, there is no information on the login
+        # If there is an error the message WRONG PASSWORD appear.
+        # Problem, if there is no connection, or the url is wrong or anything else, the same message appear
+        # TO DO change error message depending on the error code
         if reply.error() != QNetworkReply.NoError:
             self.wrongPasswordLabel.setText("MAUVAIS MOT DE PASSE !!")
             self.lne_password.setText("")
             print(f"code: {reply.error()} message: {reply.errorString()}")
         else:
+            # Create the token to connect to the API
             self.cookies = self.network_manager.cookieJar()
+            # Delete password from the line
             del self.lne_password
+            # Show login as accepted
             self.accepted = True
+            # Set login as finished to launch the process
             self.close()
             self.finished_dl.emit()

@@ -27,7 +27,7 @@
 | Author email | jules.grillot@cen-haute-savoie.org |
 | Minimum QGIS version | 3.28 |
 | Maximum QGIS version | 3.99 |
-| Git repository URL | https://github.com/JulesGrillot/plugin_gn2qgis/ |
+| Git repository URL | https://github.com/asterscen74/plugin_gn2qgis/ |
 | Git default branch | main |
 | License | GPLv2+ |
 | Python linter | Flake8 |
@@ -57,9 +57,9 @@ If you mean to deploy it to the [official QGIS plugins repository](https://plugi
 
 The documentation is generated using Sphinx and is automatically generated through the CI and published on Pages.
 
-- homepage: <https://github.com/JulesGrillot/plugin_gn2qgis/>
-- repository: <https://github.com/JulesGrillot/plugin_gn2qgis/>
-- tracker: <https://github.com/JulesGrillot/plugin_gn2qgis//issues>
+- homepage: <https://github.com/asterscen74/plugin_gn2qgis/>
+- repository: <https://github.com/asterscen74/plugin_gn2qgis/>
+- tracker: <https://github.com/asterscen74/plugin_gn2qgis//issues>
 
 ----
 

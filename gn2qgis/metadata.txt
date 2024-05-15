@@ -10,9 +10,9 @@ tags=geonature, observations
 # credits and contact
 author=Jules GRILLOT
 email=jules.grillot@cen-haute-savoie.org
-homepage=https://github.com/JulesGrillot/plugin_gn2qgis/
-repository=https://github.com/JulesGrillot/plugin_gn2qgis/
-tracker=https://github.com/JulesGrillot/plugin_gn2qgis/issues
+homepage=https://github.com/asterscen74/plugin_gn2qgis/
+repository=https://github.com/asterscen74/plugin_gn2qgis/
+tracker=https://github.com/asterscen74/plugin_gn2qgis/issues
 
 # experimental flag
 deprecated=False

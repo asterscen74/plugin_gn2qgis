@@ -161,10 +161,13 @@ class Gn2QgisPlugin:
         self.pluginIsActive = False
 
     def get_token(self):
+        # The token is fetched and added to the cookie jar
         self.network_manager.setCookieJar(self.login.cookies)
+        # The processing dialog can start
         self.start_dialog()
 
     def start_dialog(self):
+        # Start of the processes
         self.data_selection = DataSelection(self, self.project, self.iface)
         self.data_selection.exec_()
 
@@ -172,7 +175,10 @@ class Gn2QgisPlugin:
         """Main process."""
         self.network_manager = QgsNetworkAccessManager()
 
+        # Start by showing login screen
         self.login = LoginDialog(self.network_manager)
+        # When the login window is closed by clicking on "OK" the created token is fetched
         self.login.finished_dl.connect(self.get_token)
+        # If the login is not validated, the login window is executed again
         if not self.login.accepted:
             self.login.exec_()
