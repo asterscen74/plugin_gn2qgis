@@ -20,3 +20,6 @@ Unreleased
 
 - First release
 - Generated with the [QGIS Plugins templater](https://oslandia.gitlab.io/qgis/template-qgis-plugin/)
+
+## 0.2.0 - 2024-05-15
+- GeoNature version control
