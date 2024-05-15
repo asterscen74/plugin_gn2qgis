@@ -1,0 +1,34 @@
+[general]
+name=GeoNature 2 QGIS
+about=This plugin allow you to import data from GeoNature to QGIS
+category=Database
+hasProcessingProvider=False
+description=Allow the user to extract data from multiple GeoNature instances.
+icon=resources/images/default_icon.png
+tags=geonature, observations
+
+# credits and contact
+author=Jules GRILLOT
+email=jules.grillot@cen-haute-savoie.org
+homepage=https://github.com/JulesGrillot/plugin_gn2qgis/
+repository=https://github.com/JulesGrillot/plugin_gn2qgis/
+tracker=https://github.com/JulesGrillot/plugin_gn2qgis/issues
+
+# experimental flag
+deprecated=False
+experimental=True
+qgisMinimumVersion=3.28
+qgisMaximumVersion=3.99
+
+# versioning
+version=0.1.0
+changelog=
+
+[geonature]
+domain=GeoNature Asters
+url=https://geonature.nature-haute-savoie.fr
+crs=4326
+version=2.13.4
+login_url=api/auth/login
+data_url=api/synthese/for_web
+obs_url=api/synthese/vsynthese
